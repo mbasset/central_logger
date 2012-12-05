@@ -81,7 +81,7 @@ module CentralLogger
 
         # Add a normal message for every composite message
         if @individual_lines
-          LogMessage.with(safe: @safe_insert).create!(msg_h)
+          LogMessage.with(safe: @safe_insert, validate: false, async: true).create!(msg_h)
         end
 
       end
@@ -213,7 +213,7 @@ module CentralLogger
 
     # Insert a new record on rewquest end.
     def insert_log_record(safe = false)
-      @mongo_record.with(safe: safe).save!
+      @mongo_record.with(safe: safe, validate: false, async: true).save!
       create_new_record
     end
 
