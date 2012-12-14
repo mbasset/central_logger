@@ -23,7 +23,6 @@ module CentralLogger
 
         if disable_file_logging?
           @buffer        = {}
-          @auto_flushing = 1
           @guard = Mutex.new
         end
 

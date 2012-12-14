@@ -5,7 +5,6 @@ module CentralLogger
     def create_logger(config, path)
       level = ActiveSupport::BufferedLogger.const_get(config.log_level.to_s.upcase)
       logger = MongoLogger.new(:path => path, :level => level)
-      logger.auto_flushing = false if Rails.env.production?
       logger
     # rescue Mongo::ConnectionFailure => e
       # return nil
